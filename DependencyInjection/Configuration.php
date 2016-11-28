@@ -2,7 +2,6 @@
 
 namespace MediaMonks\CrawlerBundle\DependencyInjection;
 
-use MediaMonks\RestApiBundle\Request\Format;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
