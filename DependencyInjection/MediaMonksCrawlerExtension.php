@@ -26,6 +26,17 @@ class MediaMonksCrawlerExtension extends Extension implements ExtensionInterface
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
+        $this->loadCrawler($container, $config);
+        $this->loadClientPrerender($container, $config);
+        $this->loadClientPrerenderIo($container, $config);
+    }
+
+    /**
+     * @param ContainerBuilder $container
+     * @param array $config
+     */
+    protected function loadCrawler(ContainerBuilder $container, array $config)
+    {
         if (!$container->has($config['client'])) {
             $config['client'] = 'mediamonks_crawler.client.'.$config['client'];
         }
@@ -34,12 +45,25 @@ class MediaMonksCrawlerExtension extends Extension implements ExtensionInterface
             ->replaceArgument(0, new Reference($config['client']))
             ->addMethodCall('setLimit', [$config['limit']])
             ->addMethodCall('setStopOnError', [$config['stop_on_error']])
-            ->addMethodCall('setExceptionOnError', [$config['exception_on_error']])
-        ;
+            ->addMethodCall('setExceptionOnError', [$config['exception_on_error']]);
+    }
 
+    /**
+     * @param ContainerBuilder $container
+     * @param array $config
+     */
+    protected function loadClientPrerender(ContainerBuilder $container, array $config)
+    {
         $container->getDefinition('mediamonks_crawler.client.prerender')
             ->replaceArgument(0, $config['prerender']['url']);
+    }
 
+    /**
+     * @param ContainerBuilder $container
+     * @param array $config
+     */
+    protected function loadClientPrerenderIo(ContainerBuilder $container, array $config)
+    {
         $container->getDefinition('mediamonks_crawler.client.prerender_io')
             ->replaceArgument(0, $config['prerender_io']['token']);
     }
