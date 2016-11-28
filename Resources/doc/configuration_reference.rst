@@ -9,6 +9,7 @@ All available configuration options are listed below with their default values.
         client: 'goutte'
         limit: 0
         stop_on_error: false
+        exception_on_error: false
         prerender:
             url:
         prerender_io:
