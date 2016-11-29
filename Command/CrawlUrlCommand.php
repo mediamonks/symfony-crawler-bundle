@@ -73,6 +73,5 @@ class CrawlUrlCommand extends ContainerAwareCommand
      */
     protected function handlePage(Page $page)
     {
-        echo $page->getUrl() . PHP_EOL;
     }
 }

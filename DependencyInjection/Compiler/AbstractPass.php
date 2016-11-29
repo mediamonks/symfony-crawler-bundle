@@ -15,6 +15,10 @@ abstract class AbstractPass implements CompilerPassInterface
      */
     protected function addMethodCallToCrawler(ContainerBuilder $container, $tag, $methodName)
     {
+        if (!$container->hasDefinition('mediamonks_crawler.crawler')) {
+            return;
+        }
+
         $definition = $container->findDefinition('mediamonks_crawler.crawler');
 
         $taggedServices = $container->findTaggedServiceIds($tag);
