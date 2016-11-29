@@ -21,11 +21,24 @@ class CrawlUrlCommand extends ContainerAwareCommand
         $this
             ->setName('mediamonks:crawler:crawl-url')
             ->setDescription('Crawl an url')
-            ->addArgument(
-                self::ARGUMENT_URL,
-                InputArgument::REQUIRED,
-                'Url of the site you want to crawl'
-            )
+        ;
+
+        $this->addArguments();
+        $this->addOptions();
+    }
+
+    protected function addArguments()
+    {
+        $this->addArgument(
+            self::ARGUMENT_URL,
+            InputArgument::REQUIRED,
+            'Url of the site you want to crawl'
+        );
+    }
+
+    protected function addOptions()
+    {
+        $this
             ->addOption(
                 self::OPTION_LIMIT,
                 null,
@@ -46,8 +59,7 @@ class CrawlUrlCommand extends ContainerAwareCommand
                 InputOption::VALUE_OPTIONAL,
                 'Throw exception when a page could not be requested',
                 false
-            )
-        ;
+            );
     }
 
     /**
