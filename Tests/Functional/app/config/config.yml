@@ -1,9 +1,6 @@
 framework:
     test: ~
-    secret:          "MediaMonksRestApiBundleSecret"
-    router:
-        resource: "%kernel.root_dir%/config/routing.yml"
-        strict_requirements: ~
+    secret:          "MediaMonksCrawlerBundleSecret"
     default_locale:  "en"
     trusted_hosts:   ~
     trusted_proxies: ~
