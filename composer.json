@@ -1,7 +1,7 @@
 {
   "name": "mediamonks/crawler-bundle",
   "type": "symfony-bundle",
-  "description": "MediaMonks Crawler Bundle",
+  "description": "Integrates the mediamonks/crawler package into Symfony",
   "keywords": [
     "crawler",
     "seo",

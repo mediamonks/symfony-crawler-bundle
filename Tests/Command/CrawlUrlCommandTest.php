@@ -2,6 +2,7 @@
 
 namespace MediaMonks\CrawlerBundle\Tests\Command;
 
+use MediaMonks\Crawler\Crawler;
 use MediaMonks\Crawler\Exception\RequestException;
 use MediaMonks\CrawlerBundle\Command\CrawlUrlCommand;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
