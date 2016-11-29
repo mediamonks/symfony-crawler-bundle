@@ -13,6 +13,8 @@ class CrawlUrlCommand extends ContainerAwareCommand
 {
     const ARGUMENT_URL = 'url';
     const OPTION_LIMIT = 'limit';
+    const OPTION_STOP_ON_ERROR = 'stop-on-error';
+    const OPTION_EXCEPTION_ON_ERROR = 'exception-on-error';
 
     protected function configure()
     {
@@ -28,7 +30,22 @@ class CrawlUrlCommand extends ContainerAwareCommand
                 self::OPTION_LIMIT,
                 null,
                 InputOption::VALUE_OPTIONAL,
-                'Limit number of pages to crawl'
+                'Limit number of pages to crawl',
+                0
+            )
+            ->addOption(
+                self::OPTION_STOP_ON_ERROR,
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Stop when a page could not be requested',
+                false
+            )
+            ->addOption(
+                self::OPTION_EXCEPTION_ON_ERROR,
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Throw exception when a page could not be requested',
+                false
             )
         ;
     }
@@ -41,7 +58,11 @@ class CrawlUrlCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $crawler = $this->getContainer()->get('mediamonks_crawler.crawler');
+
         $crawler->setLimit((int)$input->getOption(self::OPTION_LIMIT));
+        $crawler->setStopOnError((bool)$input->getOption(self::OPTION_STOP_ON_ERROR));
+        $crawler->setExceptionOnError((bool)$input->getOption(self::OPTION_EXCEPTION_ON_ERROR));
+
         foreach ($crawler->crawl($input->getArgument('url')) as $page) {
             $this->handlePage($page);
         }
