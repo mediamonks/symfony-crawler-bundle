@@ -31,6 +31,8 @@ class CrawlUrlCommand extends BaseCrawlUrlCommand
      */
     protected function handlePage(Page $page)
     {
+        parent::handlePage($page);
+
         $this->output->writeln((string)$page->getUrl());
     }
 }
