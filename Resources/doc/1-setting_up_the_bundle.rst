@@ -29,7 +29,7 @@ file of your project:
         {
             $bundles = [
                 // ...
-                new MediaMonks\CrawlerBundle\MediaMonksCrawlerBundleBundle(),
+                new MediaMonks\CrawlerBundle\MediaMonksCrawlerBundle(),
             ];
 
             // ...
